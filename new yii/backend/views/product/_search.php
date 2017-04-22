@@ -45,7 +45,7 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'content') ?>
 
-    <?php // echo $form->field($model, 'groups') ?>
+    <?php // echo $form->field($model, 'group_ID') ?>
 
     <?php // echo $form->field($model, 'cateID') ?>
 

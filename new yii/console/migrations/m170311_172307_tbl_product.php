@@ -28,7 +28,7 @@ class m170311_172307_tbl_product extends Migration
             'keyword' => $this->string()->notNull(),
             'description' => $this->text()->notNull(),
             'content' => $this->text()->notNull(),
-            'groups' => $this->integer()->notNull(),
+            'group_ID' => $this->integer()->notNull(),
             'cateID' => $this->integer()->notNull(),
             'suppliresID' => $this->integer(),
             'userID' => $this->integer(),

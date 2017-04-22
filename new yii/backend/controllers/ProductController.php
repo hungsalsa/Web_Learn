@@ -5,13 +5,12 @@ namespace backend\controllers;
 use Yii;
 use backend\models\Product;
 use backend\models\ProductSearch;
-use backend\models\User;
 use backend\models\Group;
-use backend\models\Category;
-
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\ArrayHelper;
+
 
 /**
  * ProductController implements the CRUD actions for Product model.
@@ -68,25 +67,18 @@ class ProductController extends Controller
     public function actionCreate()
     {
         $model = new Product();
-        // Lay cac thanh vien
-        $user = new User();
-        $allUser = $user->getAllUser();
-        
-        // // Lay cac Group
-        $group = new Group();
-        $allGroup = $group->getAllGroup();
 
-        // Lay danh muc sp
-        $category = new Category();
-        $allCategory = $category->getCategoryParent();
+        // Tao danh sach Group
+        $Group = new Group();
+        $dataGroup = ArrayHelper::map($Group->getAllGroup(), 'idGroups', 'groupsName');
+
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->proID]);
         } else {
             return $this->render('create', [
                 'model' => $model,
-                'allUser' => $allUser,
-                'allCategory' => $allCategory,
+                'dataGroup' => $dataGroup,
             ]);
         }
     }
@@ -139,3 +131,5 @@ class ProductController extends Controller
         }
     }
 }
+
+?>

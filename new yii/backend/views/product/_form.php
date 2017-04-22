@@ -13,10 +13,12 @@ use yii\widgets\ActiveForm;
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'productName')->textInput(['maxlength' => true]) ?>
-    <?= $form->field($model, 'groups')->textInput() ?>
 
-    <?= $form->field($model, 'cateID')->dropDownList($allCategory,['prompt'=>'-Chọn danh muc -']) ?>
+    <?= $form->field($model, 'group_ID')->dropDownList($dataGroup,['prompt'=>'-Chọn danh mục-'])?>
     
+    <?= $form->field($model, 'cateID')->textInput() ?>
+
+
     <?= $form->field($model, 'price')->textInput() ?>
 
     <?= $form->field($model, 'saleOf')->textInput() ?>
@@ -29,10 +31,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'quanlity')->textInput() ?>
 
-    <?= $form->field($model, 'size')->textInput() ?>
+    <?= $form->field($model, 'size')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'color')->textInput(['type'=>'color']) ?>
-
+    <?= $form->field($model, 'color')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'evaluation')->textInput() ?>
 
@@ -40,19 +41,19 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'keyword')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'description')->textarea(['rows' => 6,'class'=>'description']) ?>
+    <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'content')->textarea(['rows' => 6,'class'=>'content']) ?>
+    <?= $form->field($model, 'content')->textarea(['rows' => 6]) ?>
 
     <?= $form->field($model, 'suppliresID')->textInput() ?>
 
-    <?= $form->field($model, 'userID')->dropDownList($allUser,['prompt'=>'-Chọn nguoi dung-']) ?>
+    <?= $form->field($model, 'userID')->textInput() ?>
 
-    <?= $form->field($model, 'status')->checkbox() ?>
+    <?= $form->field($model, 'status')->textInput() ?>
 
-<!--     <?= $form->field($model, 'created_at')->textInput() ?>
+    <?= $form->field($model, 'created_at')->textInput() ?>
 
-<?= $form->field($model, 'updated_at')->textInput() ?> -->
+    <?= $form->field($model, 'updated_at')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

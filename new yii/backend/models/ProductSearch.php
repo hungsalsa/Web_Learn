@@ -18,8 +18,8 @@ class ProductSearch extends Product
     public function rules()
     {
         return [
-            [['proID', 'price', 'saleOf', 'startSale', 'endSale', 'priceSale', 'quanlity', 'size', 'color', 'evaluation', 'groups', 'cateID', 'suppliresID', 'userID', 'status', 'created_at', 'updated_at'], 'integer'],
-            [['productName', 'image', 'keyword', 'description', 'content'], 'safe'],
+            [['proID', 'price', 'saleOf', 'priceSale', 'quanlity', 'evaluation', 'group_ID', 'cateID', 'suppliresID', 'userID', 'status', 'created_at', 'updated_at'], 'integer'],
+            [['productName', 'startSale', 'endSale', 'size', 'color', 'image', 'keyword', 'description', 'content'], 'safe'],
         ];
     }
 
@@ -66,10 +66,8 @@ class ProductSearch extends Product
             'endSale' => $this->endSale,
             'priceSale' => $this->priceSale,
             'quanlity' => $this->quanlity,
-            'size' => $this->size,
-            'color' => $this->color,
             'evaluation' => $this->evaluation,
-            'groups' => $this->groups,
+            'group_ID' => $this->group_ID,
             'cateID' => $this->cateID,
             'suppliresID' => $this->suppliresID,
             'userID' => $this->userID,
@@ -79,6 +77,8 @@ class ProductSearch extends Product
         ]);
 
         $query->andFilterWhere(['like', 'productName', $this->productName])
+            ->andFilterWhere(['like', 'size', $this->size])
+            ->andFilterWhere(['like', 'color', $this->color])
             ->andFilterWhere(['like', 'image', $this->image])
             ->andFilterWhere(['like', 'keyword', $this->keyword])
             ->andFilterWhere(['like', 'description', $this->description])

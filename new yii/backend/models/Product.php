@@ -11,18 +11,18 @@ use Yii;
  * @property string $productName
  * @property integer $price
  * @property integer $saleOf
- * @property integer $startSale
- * @property integer $endSale
+ * @property string $startSale
+ * @property string $endSale
  * @property integer $priceSale
  * @property integer $quanlity
- * @property integer $size
- * @property integer $color
+ * @property string $size
+ * @property string $color
  * @property integer $evaluation
  * @property string $image
  * @property string $keyword
  * @property string $description
  * @property string $content
- * @property integer $groups
+ * @property integer $group_ID
  * @property integer $cateID
  * @property integer $suppliresID
  * @property integer $userID
@@ -45,9 +45,9 @@ class Product extends \yii\db\ActiveRecord
      */
     public function rules()
     {
-         return [
-            [['productName', 'keyword', 'description', 'content', 'cateID', 'created_at', 'updated_at','groups'], 'required','message'=>'{attribute} không được để trống'],
-            [['price', 'saleOf', 'priceSale', 'quanlity', 'evaluation', 'groups', 'cateID', 'suppliresID', 'userID', 'status', 'created_at', 'updated_at'], 'integer','message'=>'{attribute} phải là số'],
+        return [
+            [['productName', 'keyword', 'description', 'content', 'group_ID', 'cateID', 'created_at', 'updated_at'], 'required'],
+            [['price', 'saleOf', 'priceSale', 'quanlity', 'evaluation', 'group_ID', 'cateID', 'suppliresID', 'userID', 'status', 'created_at', 'updated_at'], 'integer'],
             [['startSale', 'endSale'], 'safe'],
             [['description', 'content'], 'string'],
             [['productName', 'size', 'color', 'image', 'keyword'], 'string', 'max' => 255],
@@ -61,22 +61,22 @@ class Product extends \yii\db\ActiveRecord
     {
         return [
             'proID' => 'Pro ID',
-            'productName' => 'Tên sản phẩm',
-            'price' => 'Giá sản phẩm',
-            'saleOf' => 'Giảm giá',
-            'startSale' => 'Thời gian bắt đầu giảm',
-            'endSale' => 'Thời gian kết thúc giảm',
-            'priceSale' => 'Giá bán',
-            'quanlity' => 'Số lượng',
-            'size' => 'Cỡ',
-            'color' => 'Mầu',
+            'productName' => 'Product Name',
+            'price' => 'Price',
+            'saleOf' => 'Sale Of',
+            'startSale' => 'Start Sale',
+            'endSale' => 'End Sale',
+            'priceSale' => 'Price Sale',
+            'quanlity' => 'Quanlity',
+            'size' => 'Size',
+            'color' => 'Color',
             'evaluation' => 'Evaluation',
-            'image' => 'Ảnh sản phẩm',
+            'image' => 'Image',
             'keyword' => 'Keyword',
             'description' => 'Description',
-            'content' => 'Thông tin sản phẩm',
-            'groups' => 'Nhóm',
-            'cateID' => 'Danh mục',
+            'content' => 'Content',
+            'group_ID' => 'Group  ID',
+            'cateID' => 'Cate ID',
             'suppliresID' => 'Supplires ID',
             'userID' => 'User ID',
             'status' => 'Status',

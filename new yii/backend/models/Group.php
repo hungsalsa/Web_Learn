@@ -57,5 +57,6 @@ class Group extends \yii\db\ActiveRecord
         ->all();
 
         return $data;
+        // return ArrayHelper::map($data, 'idGroups' , 'groupsName');;
     }
 }
