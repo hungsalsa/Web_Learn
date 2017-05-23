@@ -35,7 +35,7 @@ class Category extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['cateName', 'parent_id', 'keywords', 'description', 'order', 'group_ID', 'created_at', 'updated_at'], 'required','message'=>'{attribute} không được để trống'],
+            [['cateName', 'keywords', 'description', 'order', 'group_ID', 'created_at', 'updated_at'], 'required','message'=>'{attribute} không được để trống'],
             [['parent_id', 'order', 'group_ID', 'status', 'created_at', 'updated_at'], 'integer','message'=>'{attribute} không phải kiểu số'],
             [['description'], 'string'],
             [['icon', 'cateName', 'keywords'], 'string', 'max' => 255],
@@ -80,6 +80,15 @@ class Category extends \yii\db\ActiveRecord
     public function getAllCategory(){
         $data = Category::find()
                 ->where(['status'=>'1'])
+                ->orderBy('cateName')
+                ->all();
+        return ArrayHelper::map($data, 'idCate' , 'cateName');
+    }
+
+// Test lay ra sub cate khi co Group_ID
+    public function getAllCategory_byGroupId($groupId=''){
+        $data = Category::find()
+                ->where(['status'=>'1','group_ID'=>$groupId])
                 ->orderBy('cateName')
                 ->all();
         return ArrayHelper::map($data, 'idCate' , 'cateName');

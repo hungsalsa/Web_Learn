@@ -29,4 +29,12 @@ tinymce.init({
 $(document).ready(function() {
 	$('#product-startsale').datepicker({'dateFormat':'d-m-yy'});
 	$('#product-endsale').datepicker({'dateFormat':'d-m-yy'});
+
+    
+
+    $("#category-group_id").change(function(event) {
+        id=$(this).val();
+        alert(id);
+    });
+    
 });
