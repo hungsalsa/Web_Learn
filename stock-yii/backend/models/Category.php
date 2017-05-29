@@ -1,7 +1,7 @@
 <?php
 
 namespace backend\models;
-use Yii\helpers\ArrayHelper;
+
 use Yii;
 
 /**
@@ -35,13 +35,11 @@ class Category extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['cateName', 'keywords', 'description', 'order', 'group_ID', 'created_at', 'updated_at',], 'required'],
-            [['parent_id', 'order', 'group_ID', 'status'], 'integer'],
+            [['cateName', 'keywords', 'description', 'order', 'group_ID', 'created_at', 'updated_at'], 'required'],
+            [['parent_id', 'order', 'group_ID', 'status', 'created_at', 'updated_at'], 'integer'],
             [['description'], 'string'],
-            [['created_at', 'updated_at'], 'safe'],
             [['icon', 'cateName', 'keywords'], 'string', 'max' => 255],
         ];
-
     }
 
     /**
@@ -51,14 +49,14 @@ class Category extends \yii\db\ActiveRecord
     {
         return [
             'idCate' => 'Id Cate',
-            'icon' => 'Ảnh',
-            'cateName' => 'Tên Danh Mục',
-            'parent_id' => 'Danh mục cha',
-            'keywords' => 'Từ khóa',
-            'description' => 'Mô tả',
-            'order' => 'Thứ tự hiển thị',
-            'group_ID' => 'Nhóm danh mục',
-            'status' => 'Trạng thái',
+            'icon' => 'Icon',
+            'cateName' => 'Cate Name',
+            'parent_id' => 'Parent ID',
+            'keywords' => 'Keywords',
+            'description' => 'Description',
+            'order' => 'Order',
+            'group_ID' => 'Group  ID',
+            'status' => 'Status',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];

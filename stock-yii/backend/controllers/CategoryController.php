@@ -4,13 +4,12 @@ namespace backend\controllers;
 
 use Yii;
 use backend\models\Category;
-use backend\models\Group;
 use backend\models\CategorySearch;
+use backend\models\Group;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
-
 
 /**
  * CategoryController implements the CRUD actions for Category model.
@@ -76,13 +75,12 @@ class CategoryController extends Controller
             $dataCat = array();
         }
 
-
         $time = time();
         $model->created_at = $time;
         $model->updated_at = $time;
-        
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect('index');
+            return $this->redirect(['view', 'id' => $model->idCate]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -102,21 +100,11 @@ class CategoryController extends Controller
     {
         $model = $this->findModel($id);
 
-        $group = new Group();
-        $dataGroup = ArrayHelper::map($group->getAllGroup(),'idGroups','groupsName');
-
-        $dataCat = $model->getCategoryParent();
-        if(empty($dataCat)){
-            $dataCat = array();
-        }
-
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->idCate]);
         } else {
             return $this->render('update', [
                 'model' => $model,
-                'dataGroup'=>$dataGroup,
-                'dataCat'=>$dataCat,
             ]);
         }
     }
