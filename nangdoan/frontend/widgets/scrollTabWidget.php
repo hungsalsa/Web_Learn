@@ -4,7 +4,7 @@ namespace frontend\widgets;
 use yii\base\Widget;
 use yii\helpers\Html;
 
-class brandCarouselWidget extends Widget
+class scrollTabWidget extends Widget
 {
     public $message;
 
@@ -19,6 +19,6 @@ class brandCarouselWidget extends Widget
 
     public function run()
     {
-        return $this->render('brandCarouselWidget');
+        return $this->render('scrollTabWidget');
     }
 }

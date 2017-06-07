@@ -4,7 +4,7 @@ namespace frontend\widgets;
 use yii\base\Widget;
 use yii\helpers\Html;
 
-class newProductWidget extends Widget
+class bestSellerWidget extends Widget
 {
     public $message;
 
@@ -19,6 +19,6 @@ class newProductWidget extends Widget
 
     public function run()
     {
-        return $this->render('newProductWidget');
+        return $this->render('bestSellerWidget');
     }
 }

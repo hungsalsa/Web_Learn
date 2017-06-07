@@ -18,8 +18,10 @@ use frontend\widgets\specialOfferWidget;
 use frontend\widgets\productTagWidget;
 use frontend\widgets\specialDealsWidget;
 use frontend\widgets\newsletterWidget;
-use frontend\widgets\brandCarouselWidget;
+use frontend\widgets\TestimonialsWidget;
+use frontend\widgets\brandsCarouselWidget;
 use frontend\widgets\footerWidget;
+// use frontend\widgets\brandsCarouselWidget;
 
 AppAsset::register($this);
 ?>
@@ -97,6 +99,11 @@ AppAsset::register($this);
             <!-- NEWSLETTER + Testimonials +home-banner -->
             <?= newsletterWidget::widget(); ?>
 
+            <!-- ============================================== Testimonials============================================== -->
+            <?= TestimonialsWidget::widget(); ?>
+
+            <!-- ============================================== Testimonials: END ============================================== -->
+
             </div><!-- /.sidemenu-holder -->
             <!-- ============================================== SIDEBAR : END ============================================== -->
 
@@ -106,12 +113,8 @@ AppAsset::register($this);
         </div><!-- /.row -->
 
         <!-- ============================================== BRANDS CAROUSEL ============================================== -->
-            <div class="row">
-                <div class="col-md-12 col-sm-12">
-                    <?= brandCarouselWidget::widget(); ?>
-                </div>
-            </div>
-    <!-- ============================================== BRANDS CAROUSEL : END ============================================== -->
+        <?= brandsCarouselWidget::widget(); ?>
+        <!-- ============================================== BRANDS CAROUSEL : END ============================================== -->
         </div><!-- /.container -->
     </div><!-- /#top-banner-and-menu -->
 
