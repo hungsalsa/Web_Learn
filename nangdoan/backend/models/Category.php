@@ -65,7 +65,18 @@ class Category extends \yii\db\ActiveRecord
     public $data;
     public function getCategoryParent($parent=0,$level=""){
         $result = Category::find()->asArray()->where('parent_id=:parent',['parent'=>$parent])->all();
-        $level .="-";
+        $level .="|---";
+        foreach ($result as $key => $value) {
+            if($parent == 0) {$level ="";}
+            $this->data[$value["idCate"]] =$level.$value['cateName'];
+            self::getCategoryParent($value["idCate"],$level);
+        }
+        return $this->data;
+    }
+
+    public function getCategoryParentId($id=null,$parent=0,$level=""){
+        $result = Category::find()->asArray()->where('parent_id=:parent and idCate=:id',['parent'=>$parent,'id'=>$id])->all();
+        $level .="|---";
         foreach ($result as $key => $value) {
             if($parent == 0) {$level ="";}
             $this->data[$value["idCate"]] =$level.$value['cateName'];

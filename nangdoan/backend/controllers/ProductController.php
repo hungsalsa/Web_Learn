@@ -12,6 +12,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Url;
 
 /**
  * ProductController implements the CRUD actions for Product model.
@@ -79,8 +80,20 @@ class ProductController extends Controller
         $suplier = new Suppliers();
         $allSupliers = ArrayHelper::map($suplier->getAllSuppliers(),'suppID','companyName');
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->proID]);
+        $urlImage = Yii::$app->request->post();
+
+        // $img_link = str_replace("http://local.web_learn.vn/nangdoan/", "", $urlImage['Product']['image']);
+        
+
+        $time = time();
+        $model->created_at = $time;
+        $model->updated_at = $time;
+
+
+        if ($model->load(Yii::$app->request->post())) {
+            $model->image = str_replace("http://local.nangdoan.vn/", "", $urlImage['Product']['image']);
+            if($model->save())
+                return $this->redirect(['view', 'id' => $model->proID]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -101,11 +114,30 @@ class ProductController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->proID]);
+        $group = new Group();
+        $allGroup = ArrayHelper::map($group->getAllGroup(),'idGroups','groupsName');
+
+        $category = new Category();
+        $allCategory = $category->getCategoryParent();
+        if(empty($allCategory)) { $allCategory =array(); }
+
+        $suplier = new Suppliers();
+        $allSupliers = ArrayHelper::map($suplier->getAllSuppliers(),'suppID','companyName');
+
+        $time = time();
+        
+        $model->updated_at = $time;
+         $urlImage = Yii::$app->request->post();
+        if ($model->load(Yii::$app->request->post())) {
+            $model->image = str_replace("http://local.nangdoan.vn/", "", $urlImage['Product']['image']);
+            if($model->save())
+                return $this->redirect(['view', 'id' => $model->proID]);
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'allGroup' => $allGroup,
+                'allCategory' => $allCategory,
+                'allSupliers' => $allSupliers,
             ]);
         }
     }
@@ -136,6 +168,21 @@ class ProductController extends Controller
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+
+    public function actionList_category($id)
+    {
+        //count
+        $countcategory = Category::find()->where(['group_ID'=>$id])->count();
+
+        $category = Category::find()->where(['group_ID'=>$id])->orderBy('idCate DESC')->all();
+        if($countcategory > 0 ){
+            foreach ($category as $result) {
+                echo "<option value='".$result->idCate."'>".$result->cateName."</option>";
+            }
+        }else{
+            echo "<option>-Hãy tạo danh mục trước-</option>";
         }
     }
 }

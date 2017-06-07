@@ -60,7 +60,7 @@ class Product extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'proID' => 'Pro ID',
+            'proID' => 'Mã',
             'productName' => 'Tên sản phẩm',
             'price' => 'Giá sản phẩm',
             'saleOf' => 'Giảm giá',
@@ -70,7 +70,7 @@ class Product extends \yii\db\ActiveRecord
             'quanlity' => 'số lượng',
             'size' => 'Kích cỡ',
             'color' => 'Mầu sắc',
-            'evaluation' => 'Evaluation',
+            'evaluation' => 'Đánh giá',
             'image' => 'Ảnh sản phẩm',
             'keyword' => 'Từ khóa ',
             'description' => 'Mô tả',

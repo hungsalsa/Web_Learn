@@ -22,6 +22,7 @@ class AppAsset extends AssetBundle
         'vendors/bootstrap-daterangepicker/daterangepicker.css',
         'build/css/custom.min.css',
         'css/jquery-ui.min.css',
+        'css/site.css',
     ];
     public $js = [
         // <!-- jQuery -->
@@ -64,6 +65,7 @@ class AppAsset extends AssetBundle
         'js/jquery-ui.min.js',
         'tinymce/tinymce.min.js',
         'js/main.js',
+        'js/editor.js',
 
         // <!-- Custom Theme Scripts -->
         'build/js/custom.min.js',

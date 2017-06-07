@@ -6,8 +6,8 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Product */
 
-$this->title = $model->proID;
-$this->params['breadcrumbs'][] = ['label' => 'Products', 'url' => ['index']];
+$this->title = $model->productName;
+$this->params['breadcrumbs'][] = ['label' => 'Sản phẩm', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="product-view">
@@ -15,8 +15,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->proID], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->proID], [
+        <?= Html::a('Sửa sản phẩm', ['update', 'id' => $model->proID], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Xóa sản phẩm', ['delete', 'id' => $model->proID], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => 'Are you sure you want to delete this item?',
@@ -39,7 +39,15 @@ $this->params['breadcrumbs'][] = $this->title;
             'size',
             'color',
             'evaluation',
-            'image',
+            // 'image',
+            [
+             'attribute'=>'image',
+            'format'=>'html',
+             'value' => function ($data) {
+                $url = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]/".$data['image'];
+                return Html::img($url, ['alt'=>'myImage','width'=>'70','height'=>'50']);
+             }
+             ],
             'keyword',
             'description:ntext',
             'content:ntext',
@@ -48,8 +56,16 @@ $this->params['breadcrumbs'][] = $this->title;
             'suppliresID',
             'userID',
             'status',
-            'created_at',
-            'updated_at',
+            // 'created_at',
+                [
+                    'attribute' => 'created_at',
+                    'format' => ['date', 'php:d/m/Y']
+                ], 
+                [
+                    'attribute' => 'updated_at',
+                    'format' => ['date', 'php:d/m/Y']
+                ],  
+            // 'updated_at',
         ],
     ]) ?>
 

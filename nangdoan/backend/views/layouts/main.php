@@ -34,7 +34,7 @@ AppAsset::register($this);
                 <div class="clearfix"></div>
                 <!-- menu profile quick info -->
                 <div class="profile clearfix">
-                    <div class="profile_pic"> <img src="images/img.jpg" alt="..." class="img-circle profile_img"> </div>
+                    <div class="profile_pic"> <img src="<?= Yii::$app->request->baseUrl; ?>/images/img.jpg" alt="..." class="img-circle profile_img"> </div>
                     <div class="profile_info"> <span>Welcome,</span>
                         <h2>John Doe</h2> </div>
                 </div>
@@ -187,7 +187,7 @@ AppAsset::register($this);
                     <div class="nav toggle"> <a id="menu_toggle"><i class="fa fa-bars"></i></a> </div>
                     <ul class="nav navbar-nav navbar-right">
                         <li class="">
-                            <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> <img src="images/img.jpg" alt="">John Doe <span class=" fa fa-angle-down"></span> </a>
+                            <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> <img src="<?= Yii::$app->request->baseUrl; ?>/images/img.jpg" alt="">John Doe <span class=" fa fa-angle-down"></span> </a>
                             <ul class="dropdown-menu dropdown-usermenu pull-right">
                                 <li><a href="javascript:;"> Profile</a>
                                 </li>
@@ -243,9 +243,11 @@ AppAsset::register($this);
         <div class="right_col" role="main">
 
             <?= Breadcrumbs::widget([
+                'homeLink' => ['label' => 'Trang chủ','url' => Yii::$app->getHomeUrl()],
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
             ]) ?>
             <!-- top tiles -->
+
             <?= $content ?>
         </div>
         <!-- /page content -->
@@ -260,9 +262,10 @@ AppAsset::register($this);
 
 
 <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content"  style="width: 132%">
+
+<div class="modal fade bs-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel">File manager</h4>
@@ -276,6 +279,17 @@ AppAsset::register($this);
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary">Save changes</button>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- Small modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Small modal</button>
+
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      ...
     </div>
   </div>
 </div>

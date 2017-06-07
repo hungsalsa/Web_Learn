@@ -40,6 +40,7 @@ class CategoryController extends Controller
         $searchModel = new CategorySearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
+
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -71,9 +72,7 @@ class CategoryController extends Controller
         $allGroup = ArrayHelper::map($group->getAllGroup(),'idGroups','groupsName');
 
         $dataCat = $model->getCategoryParent();
-        if(empty($dataCat)) { $dataCat =array(); }else{
-            array_unshift($dataCat, '-- Chon danh muc cha --');
-        }
+        if(empty($dataCat)) { $dataCat =array(); }
         
         $time = time();
         $model->created_at = $time;
@@ -106,7 +105,7 @@ class CategoryController extends Controller
 
         $dataCat = $model->getCategoryParent();
         if(empty($dataCat)) { $dataCat =array(); }else{
-            array_unshift($dataCat, '-- Chon danh muc cha --');
+            // array_unshift($dataCat, '-- Chon danh muc cha --');
         }
         
         $time = time();
@@ -152,4 +151,6 @@ class CategoryController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
+    
 }

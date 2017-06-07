@@ -9,6 +9,17 @@ use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
 use common\widgets\Alert;
+use frontend\widgets\topNavWidget;
+use frontend\widgets\headerTopWidget;
+use frontend\widgets\mainHeaderWidget;
+use frontend\widgets\sideMenuWidget;
+use frontend\widgets\hotDealWidget;
+use frontend\widgets\specialOfferWidget;
+use frontend\widgets\productTagWidget;
+use frontend\widgets\specialDealsWidget;
+use frontend\widgets\newsletterWidget;
+use frontend\widgets\brandCarouselWidget;
+use frontend\widgets\footerWidget;
 
 AppAsset::register($this);
 ?>
@@ -22,59 +33,91 @@ AppAsset::register($this);
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 </head>
-<body>
+<body class="cnt-home">
 <?php $this->beginBody() ?>
 
-<div class="wrap">
-    <?php
-    NavBar::begin([
-        'brandLabel' => 'My Company',
-        'brandUrl' => Yii::$app->homeUrl,
-        'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
-        ],
-    ]);
-    $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
-        ['label' => 'About', 'url' => ['/site/about']],
-        ['label' => 'Contact', 'url' => ['/site/contact']],
-    ];
-    if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
-        $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
-    } else {
-        $menuItems[] = '<li>'
-            . Html::beginForm(['/site/logout'], 'post')
-            . Html::submitButton(
-                'Logout (' . Yii::$app->user->identity->username . ')',
-                ['class' => 'btn btn-link logout']
-            )
-            . Html::endForm()
-            . '</li>';
-    }
-    echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => $menuItems,
-    ]);
-    NavBar::end();
-    ?>
+        <!-- ============================================== HEADER ============================================== -->
+    <header class="header-style-1">
 
-    <div class="container">
-        <?= Breadcrumbs::widget([
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        ]) ?>
-        <?= Alert::widget() ?>
-        <?= $content ?>
-    </div>
-</div>
+        <!-- ============================================== TOP MENU ============================================== -->
+        <div class="top-bar animate-dropdown">
+            <div class="container">
+                 <?= headerTopWidget::widget(); ?>
+                <!-- /.header-top-inner -->
+            </div><!-- /.container -->
+        </div><!-- /.header-top -->
+        <!-- ============================================== TOP MENU : END ============================================== -->
+            <div class="main-header">
+                <?= mainHeaderWidget::widget(); ?>
 
-<footer class="footer">
-    <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
+            </div><!-- /.main-header -->
 
-        <p class="pull-right"><?= Yii::powered() ?></p>
-    </div>
-</footer>
+            <!-- ============================================== NAVBAR ============================================== -->
+        <div class="header-nav animate-dropdown">
+            <div class="container">
+                <?= topNavWidget::widget(); ?>
+                <!-- /.navbar-default -->
+            </div><!-- /.container-class -->
+
+        </div><!-- /.header-nav -->
+        <!-- ============================================== NAVBAR : END ============================================== -->
+
+    </header>
+    <!-- ============================================== HEADER : END ============================================== -->
+
+    <div class="body-content outer-top-xs" id="top-banner-and-menu">
+        <div class="container">
+            <div class="row">
+        <!-- ============================================== SIDEBAR ============================================== -->  
+            <div class="col-xs-12 col-sm-12 col-md-3 sidebar">
+                
+                <!-- ================================== TOP NAVIGATION ================================== --> 
+            <?= sideMenuWidget::widget(); ?>
+
+            <!-- ================================== TOP NAVIGATION : END ================================== -->
+
+            <!-- ============================================== HOT DEALS ============================================== -->
+            <?= hotDealWidget::widget(); ?>
+            <!-- ============================================== HOT DEALS: END ============================================== -->
+
+
+            <!-- ============================================== SPECIAL OFFER ============================================== -->
+            <?= specialOfferWidget::widget(); ?>
+            <!-- ============================================== SPECIAL OFFER : END ============================================== -->
+
+            <!-- ============================================== PRODUCT TAGS ============================================== -->
+            <?= productTagWidget::widget(); ?>
+            <!-- ============================================== PRODUCT TAGS : END ============================================== -->
+
+                <!-- ============================================== SPECIAL DEALS ============================================== -->
+            <?= specialDealsWidget::widget(); ?>
+            <!-- ============================================== SPECIAL DEALS : END ============================================== -->
+
+            <!-- ============================================== NEWSLETTER ============================================== -->
+            <!-- NEWSLETTER + Testimonials +home-banner -->
+            <?= newsletterWidget::widget(); ?>
+
+            </div><!-- /.sidemenu-holder -->
+            <!-- ============================================== SIDEBAR : END ============================================== -->
+
+            <!-- ============================================== CONTENT ============================================== -->
+            <?= $content ?>
+            <!-- ============================================== CONTENT : END ============================================== -->
+        </div><!-- /.row -->
+
+        <!-- ============================================== BRANDS CAROUSEL ============================================== -->
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <?= brandCarouselWidget::widget(); ?>
+                </div>
+            </div>
+    <!-- ============================================== BRANDS CAROUSEL : END ============================================== -->
+        </div><!-- /.container -->
+    </div><!-- /#top-banner-and-menu -->
+
+    <!-- ============================================================= FOOTER ============================================================= -->
+    <?= footerWidget::widget(); ?>
+    <!-- ============================================================= FOOTER : END============================================================= -->
 
 <?php $this->endBody() ?>
 </body>

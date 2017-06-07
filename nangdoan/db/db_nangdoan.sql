@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2017-06-05 11:19:05
+Date: 2017-06-07 19:14:19
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -53,18 +53,24 @@ CREATE TABLE `tbl_category` (
   `created_at` int(11) NOT NULL,
   `updated_at` int(11) NOT NULL,
   PRIMARY KEY (`idCate`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of tbl_category
 -- ----------------------------
 INSERT INTO `tbl_category` VALUES ('1', '', 'Clothing', '0', 'clothing key', 'clothing key clothing key', '1', '1', '1', '1489250849', '1489250849');
 INSERT INTO `tbl_category` VALUES ('2', '', 'Electronics', '0', 'Electronics key', 'Electronics keyElectronics key', '1', '1', '1', '1489250959', '1489250959');
-INSERT INTO `tbl_category` VALUES ('3', '', 'Health & Beauty', '0', 'Health & Beauty key', 'Health & BeautyHealth & BeautyHealth & Beauty', '1', '1', '0', '1496225795', '1496225795');
-INSERT INTO `tbl_category` VALUES ('4', '', 'Men', '1', 'men', 'men men', '1', '1', '1', '1489252210', '1489252210');
+INSERT INTO `tbl_category` VALUES ('3', '', 'Health & Beauty', '0', 'Health & Beauty key', '<p>Health &amp; BeautyHealth &amp; BeautyHealth &amp; Beauty</p>', '1', '1', '1', '1496800709', '1496800709');
+INSERT INTO `tbl_category` VALUES ('4', '', 'Men', '1', 'men', '<p>men men</p>', '2', '1', '1', '1496741723', '1496741723');
 INSERT INTO `tbl_category` VALUES ('5', '', 'Women', '1', 'Women', 'WomenWomen', '2', '1', '1', '1489252426', '1489252426');
-INSERT INTO `tbl_category` VALUES ('6', '', 'Boy', '1', 'Boy', 'BoyBoyBoy', '2', '1', '1', '1489252453', '1489252453');
-INSERT INTO `tbl_category` VALUES ('7', '', 'Shoes', '4', 'Shoe', 'ShoeShoe', '3', '1', '1', '1489252695', '1489252695');
+INSERT INTO `tbl_category` VALUES ('6', '', 'Boys', '1', 'Boy', '<p>BoyBoyBoy</p>', '2', '1', '1', '1496742001', '1496742001');
+INSERT INTO `tbl_category` VALUES ('7', '', 'Shoes', '4', 'Shoe', '<p>ShoeShoe</p>', '3', '1', '1', '1496741917', '1496741917');
+INSERT INTO `tbl_category` VALUES ('10', '', 'Handbags', '3', 'Handbags', '<p>Handbags</p>', '3', '1', '1', '1496741895', '1496741895');
+INSERT INTO `tbl_category` VALUES ('11', '', 'Jeans', '4', 'Jeans', '<p>Jeans</p>', '3', '1', '1', '1496741977', '1496741977');
+INSERT INTO `tbl_category` VALUES ('12', '', 'Dresses', '4', 'Dresses', '<p>Dresses</p>', '3', '1', '1', '1496801501', '1496801501');
+INSERT INTO `tbl_category` VALUES ('13', '', 'Laptop', '2', 'Laptop', '<p>Laptop</p>', '3', '1', '1', '1496801429', '1496801429');
+INSERT INTO `tbl_category` VALUES ('14', '', 'Desktop', '2', 'Desktop', '<p>Desktop</p>', '3', '1', '1', '1496801470', '1496801470');
+INSERT INTO `tbl_category` VALUES ('15', '', 'Dell', '13', 'Dell', '<p>Dell</p>', '3', '1', '1', '1496801609', '1496801609');
 
 -- ----------------------------
 -- Table structure for tbl_group
@@ -83,11 +89,10 @@ CREATE TABLE `tbl_group` (
 -- ----------------------------
 -- Records of tbl_group
 -- ----------------------------
-INSERT INTO `tbl_group` VALUES ('1', 'Sản phẩm 1', '1', '1489242503', '1489242503');
+INSERT INTO `tbl_group` VALUES ('1', 'Sản phẩm', '1', '1489242503', '1489242503');
 INSERT INTO `tbl_group` VALUES ('2', 'Tin tức', '1', '1489242532', '1489242532');
 INSERT INTO `tbl_group` VALUES ('3', 'Liên hệ', '1', '1489243178', '1489243178');
 INSERT INTO `tbl_group` VALUES ('4', 'Liên hệ 2', '1', '1489243244', '1489243244');
-INSERT INTO `tbl_group` VALUES ('5', 'Sản phẩm ', '1', '1489243362', '1489243362');
 INSERT INTO `tbl_group` VALUES ('6', 'Contact Us', '1', '1496045898', '1496045898');
 INSERT INTO `tbl_group` VALUES ('7', 'Contact Us2', '1', '1496045950', '1496045950');
 INSERT INTO `tbl_group` VALUES ('8', 'contact', '1', '1496046349', '1496046349');
@@ -121,11 +126,15 @@ CREATE TABLE `tbl_product` (
   `created_at` int(11) NOT NULL,
   `updated_at` int(11) NOT NULL,
   PRIMARY KEY (`proID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of tbl_product
 -- ----------------------------
+INSERT INTO `tbl_product` VALUES ('1', 'Quần Jean', '200000', '20', '0000-00-00', '0000-00-00', null, '10', 'S', '', null, 'uploads/Category/1.jpg', 'jean nam', '<p>jean nam</p>', '<p>jean nam</p>\r\n<p><strong>jean nam</strong></p>', '1', '4', '1', null, '1', '1496808717', '1496833148');
+INSERT INTO `tbl_product` VALUES ('2', 'Quần Jean2', null, null, '0000-00-00', null, null, null, '', '', null, 'uploads/Category/1.jpg', 'jean nam', '<p>sada<img src=\"http://local.web_learn.vn/nangdoan/uploads/Category/1.jpg\" alt=\"\" width=\"960\" height=\"640\" /></p>', '<p>đấ</p>', '1', '4', '1', null, '1', '1496810164', '1496832661');
+INSERT INTO `tbl_product` VALUES ('3', 'dsfsdfs', null, null, null, null, null, '34', '', '', null, 'uploads/Product/1671.jpg', 'zxcz', '<p>zcxzc</p>', '<p>czxcz</p>', '1', '7', null, null, '1', '1496828375', '1496833285');
+INSERT INTO `tbl_product` VALUES ('4', 'Laptop lenovo', '12000000', '10', '0000-00-00', '0000-00-00', null, '12', '15\'\'', '', null, 'uploads/Category/1.jpg', 'Laptop lenovo', '<p>Laptop lenovo</p>', '<p>Laptop lenovoLaptop lenovo</p>', '1', '15', '2', null, '1', '1496829216', '1496832626');
 
 -- ----------------------------
 -- Table structure for tbl_province
