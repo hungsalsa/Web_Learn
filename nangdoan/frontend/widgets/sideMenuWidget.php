@@ -3,7 +3,7 @@ namespace frontend\widgets;
 
 use yii\base\Widget;
 use yii\helpers\Html;
-
+use frontend\models\Category;
 class sideMenuWidget extends Widget
 {
     public $message;
@@ -19,6 +19,8 @@ class sideMenuWidget extends Widget
 
     public function run()
     {
-        return $this->render('sideMenuWidget');
+        $cat = new Category();
+        $dataCat = $cat->getCategoryByParent();
+        return $this->render('sideMenuWidget',['dataCat'=>$dataCat]);
     }
 }

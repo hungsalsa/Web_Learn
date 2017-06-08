@@ -1,5 +1,6 @@
 <?php 
 use frontend\models\Category;
+use yii\helpers\Url;
 
  ?>
 
@@ -35,7 +36,7 @@ use frontend\models\Category;
                                             $dataCatSub2 = $catSub2->getCategoryByParent($value1['idCate']);
                                              ?>
                                             <?php foreach ($dataCatSub2 as $key2 => $value2): ?>
-                                                <li><a href="#"><?= $value2['cateName'] ?></a>
+                                                <li><a href="<?= yii::$app->homeUrl ?>product/listproduct?id=<?= $value2['idCate'] ?>"><?= $value2['cateName'] ?></a>
                                                 </li>
                                             <?php endforeach ?>
                                             </ul>

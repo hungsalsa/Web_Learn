@@ -1,6 +1,6 @@
 <div id="hero">
    <div id="owl-main" class="owl-carousel owl-inner-nav owl-ui-sm">
-      <div class="item" style="background-image: url(assets/images/sliders/01.jpg);">
+      <div class="item" style="background-image: url(<?= (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]" ?>/common/images/sliders/01.jpg);">
          <div class="container-fluid">
             <div class="caption bg-color vertical-center text-left">
                <div class="slider-header fadeInDown-1">Top Brands</div>
@@ -19,7 +19,7 @@
          <!-- /.container-fluid -->
       </div>
       <!-- /.item -->
-      <div class="item" style="background-image: url(assets/images/sliders/02.jpg);">
+      <div class="item" style="background-image: url(<?= (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]" ?>/common/images/sliders/02.jpg);">
          <div class="container-fluid">
             <div class="caption bg-color vertical-center text-left">
                <div class="slider-header fadeInDown-1">Spring 2016</div>

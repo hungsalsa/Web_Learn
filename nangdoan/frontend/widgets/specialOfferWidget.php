@@ -3,6 +3,7 @@ namespace frontend\widgets;
 
 use yii\base\Widget;
 use yii\helpers\Html;
+use app\models\Product;
 
 class specialOfferWidget extends Widget
 {
@@ -19,6 +20,8 @@ class specialOfferWidget extends Widget
 
     public function run()
     {
-        return $this->render('specialOfferWidget');
+        $ranData = new Product();
+        $ranData = $ranData->getRandomProduct();
+        return $this->render('specialOfferWidget',['ranData'=>$ranData]);
     }
 }

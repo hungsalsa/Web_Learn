@@ -62,6 +62,11 @@ class Category extends \yii\db\ActiveRecord
         ];
     }
 
+    public function getCategoryInfo($id){
+        return  Category::find()->asArray()->where('idCate=:idcat and status=:status',['idcat'=>$id,'status'=>'1'])->one();
+        
+    }
+
     public function getCategoryByParent($parent=0,$group=1,$status=1){
         $data = Category::find()->asArray()->where('parent_id=:parent and group_ID=:group and status=:status',['parent'=>$parent,'group'=>$group,'status'=>$status])->all();
         return $data;
