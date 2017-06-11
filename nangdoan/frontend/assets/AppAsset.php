@@ -27,7 +27,7 @@ class AppAsset extends AssetBundle
         "https://fonts.googleapis.com/css?family=Montserrat:400,700",
     ];
     public $js = [
-        "common/js/jquery-1.11.1.min.js",   
+        "common/js/jquery-3.2.0.min.js",   
         "common/js/bootstrap.min.js",   
         "common/js/bootstrap-hover-dropdown.min.js",
         "common/js/owl.carousel.min.js",    
@@ -39,6 +39,7 @@ class AppAsset extends AssetBundle
         "common/js/bootstrap-select.min.js",
         "common/js/wow.min.js",
         "common/js/scripts.js",
+        "common/js/jquery-ui.min.js",
     ];
     public $depends = [
         'yii\web\YiiAsset',

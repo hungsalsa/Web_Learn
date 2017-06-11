@@ -1,3 +1,4 @@
+<?php use yii\helpers\Html; ?>
 <div class="header-top-inner">
     <div class="cnt-account">
         <ul class="list-unstyled">
@@ -9,8 +10,22 @@
             </li>
             <li><a href="#"><i class="icon fa fa-check"></i>Checkout</a>
             </li>
-            <li><a href="#"><i class="icon fa fa-lock"></i>Login</a>
+            <?php if (Yii::$app->user->isGuest): ?>
+
+            <li><a href="<?= yii::$app->homeUrl.'site/login' ?>"><i class="icon fa fa-lock"></i>Login</a>
             </li>
+            <?php else: ?>
+                <li>
+                <?= Html::beginForm(['/site/logout'], 'post'); ?>
+                <?= 
+                    Html::submitButton(
+                        'Logout (' . Yii::$app->user->identity->username . ')',
+                        ['class' => 'btn btn-link logout']
+                    )
+                ?>
+                <?= Html::endForm(); ?>
+                </li>
+            <?php endif ?>
         </ul>
     </div>
     <!-- /.cnt-account -->

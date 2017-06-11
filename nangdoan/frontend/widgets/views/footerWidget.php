@@ -113,11 +113,11 @@
          <div class="col-xs-12 col-sm-6 no-padding">
             <div class="clearfix payment-methods">
                <ul>
-                  <li><img src="common/images/payments/1.png" alt=""></li>
-                  <li><img src="common/images/payments/2.png" alt=""></li>
-                  <li><img src="common/images/payments/3.png" alt=""></li>
-                  <li><img src="common/images/payments/4.png" alt=""></li>
-                  <li><img src="common/images/payments/5.png" alt=""></li>
+                  <li><img src="<?= yii::$app->homeUrl ?>common/images/payments/1.png" alt=""></li>
+                  <li><img src="<?= yii::$app->homeUrl ?>common/images/payments/2.png" alt=""></li>
+                  <li><img src="<?= yii::$app->homeUrl ?>common/images/payments/3.png" alt=""></li>
+                  <li><img src="<?= yii::$app->homeUrl ?>common/images/payments/4.png" alt=""></li>
+                  <li><img src="<?= yii::$app->homeUrl ?>common/images/payments/5.png" alt=""></li>
                </ul>
             </div>
             <!-- /.payment-methods -->
@@ -125,3 +125,11 @@
       </div>
    </div>
 </footer>
+
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      ...
+    </div>
+  </div>
+</div>

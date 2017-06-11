@@ -3,7 +3,7 @@
         <div class="col-xs-12 col-sm-12 col-md-3 logo-holder">
             <!-- ============================================================= LOGO ============================================================= -->
             <div class="logo">
-                <a href="home.html"> <img src="<?= (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]" ?>/common/images/logo.png" alt=""> </a>
+                <a href="<?= (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]" ?>"> <img src="<?= (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]" ?>/common/images/logo.png" alt=""> </a>
             </div>
             <!-- /.logo -->
             <!-- ============================================================= LOGO : END ============================================================= -->

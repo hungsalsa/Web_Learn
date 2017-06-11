@@ -100,4 +100,64 @@ class Product extends \yii\db\ActiveRecord
     public function getProductUpsell($limit=9){
         return Product::find()->asArray()->orderBy('updated_at DESC')->limit($limit)->all();
     }
+
+    protected function get_list_set_input($input = array())
+    {
+        
+        // Thêm điều kiện cho câu truy vấn truyền qua biến $input['where'] 
+        //(vi du: $input['where'] = array('email' => 'hocphp@gmail.com'))
+        if ((isset($input['where'])) && $input['where'])
+        {
+            return Product::find()->asArray()->where($input['where'])->all();
+            // $this->db->where($input['where']);
+        }
+/*
+tu lam
+*/
+        // Thêm điều kiện cho câu truy vấn truyền qua biến $input['where_in'] 
+        //(vi du: $input['where_in'] = array('email' => array(10, 11, 12)))
+        if ((isset($input['where_in'])) && $input['where_in'])
+        {
+            return Product::find()->asArray()->where($input['where'])->all();
+            // $customers = Customer::find()->where(['id' => [10, 11, 12]])->all();
+            // $this->db->where_in($input['where_in']);
+        }
+/*
+tu lam
+*/      
+        //tim kiem like
+        // $input['like'] = array('name' , 'abc');
+        // if ((isset($input['like'])) && $input['like'])
+        // {
+        //     $this->db->like($input['like'][0], $input['like'][1]); 
+        // }
+
+        //tim kiem or_like
+        // $input['or_like'] = array('name' => 'abc','id' => '1');
+     //    if ((isset($input['or_like'])) && $input['or_like'])
+        // {
+        //  $this->db->or_like($input['or_like'][0], $input['or_like'][1]); 
+        // }
+        
+        // Thêm sắp xếp dữ liệu thông qua biến $input['order'] 
+        //(ví dụ $input['order'] = array('id','DESC'))
+        if (isset($input['order'][0]) && isset($input['order'][1]))
+        {
+            $this->db->order_by($input['order'][0], $input['order'][1]);
+        }
+        else
+        {
+            //mặc định sẽ sắp xếp theo id giảm dần 
+            $order = ($this->order == '') ? array($this->table.'.'.$this->key, 'desc') : $this->order;
+            $this->db->order_by($order[0], $order[1]);
+        }
+        
+        // Thêm điều kiện limit cho câu truy vấn thông qua biến $input['limit'] 
+        //(ví dụ $input['limit'] = array('10' ,'0')) 
+        // if (isset($input['limit'][0]) && isset($input['limit'][1]))
+        // {
+        //     $this->db->limit($input['limit'][0], $input['limit'][1]);
+        // }
+        
+    }
 }

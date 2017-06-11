@@ -123,6 +123,13 @@ AppAsset::register($this);
     <!-- ============================================================= FOOTER : END============================================================= -->
 
 <?php $this->endBody() ?>
+<script>
+    function addWishlist(id) {
+        $.get('<?= yii::$app->homeUrl."wishlist/add" ?>', {'id': id}, function(data) {
+            
+        });
+    }
+</script>
 </body>
 </html>
 <?php $this->endPage() ?>

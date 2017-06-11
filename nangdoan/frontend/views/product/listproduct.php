@@ -169,7 +169,7 @@
                                        <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
                                     </li>
                                     <li class="lnk wishlist">
-                                       <a class="add-to-cart" href="detail.html" title="Wishlist">
+                                       <a class="add-to-wishlist" href="javascript:void(0)" onclick="addWishlist(<?= $value['proID'] ?>)" title="Wishlist">
                                        <i class="icon fa fa-heart"></i>
                                        </a>
                                     </li>

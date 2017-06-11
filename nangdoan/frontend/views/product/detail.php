@@ -177,9 +177,10 @@
                                     <span class="price-strike">$<?= number_format((float)$data['price'], 2, ',', '.') ?></span>
                                  </div>
                               </div>
+                              
                               <div class="col-sm-6">
                                  <div class="favorite-button m-t-10">
-                                    <a class="btn btn-primary" data-toggle="tooltip" data-placement="right" title="Wishlist" href="#">
+                                    <a class="btn btn-primary" data-toggle="tooltip" data-placement="right" title="Wishlist" href="javascript:void(0)" onclick="addWishlist(<?= $data['proID'] ?>)">
                                     <i class="fa fa-heart"></i>
                                     </a>
                                     <a class="btn btn-primary" data-toggle="tooltip" data-placement="right" title="Add to Compare" href="#">
@@ -395,14 +396,14 @@
                         <div class="product">
                            <div class="product-image">
                               <div class="image">
-                                 <a href="detail.html"><img  src="<?= yii::$app->homeUrl.$value['image']; ?>" alt=""></a>
+                                 <a href="<?= yii::$app->homeUrl.'product/detail?id='.$value['proID'] ?>"><img  src="<?= yii::$app->homeUrl.$value['image']; ?>" alt=""></a>
                               </div>
                               <!-- /.image -->        
                               <div class="tag sale"><span>sale</span></div>
                            </div>
                            <!-- /.product-image -->
                            <div class="product-info text-left">
-                              <h3 class="name"><a href="detail.html"><?= $value['productName'] ?></a></h3>
+                              <h3 class="name"><a href="<?= yii::$app->homeUrl.'product/detail?id='.$value['proID'] ?>"><?= $value['productName'] ?></a></h3>
                               <div class="rating rateit-small"></div>
                               <div class="description"></div>
                               <div class="product-price">   
@@ -422,7 +423,7 @@
                                        <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
                                     </li>
                                     <li class="lnk wishlist">
-                                       <a class="add-to-cart" href="detail.html" title="Wishlist">
+                                       <a class="add-to-cart" href="javascript:void(0)" onclick="addWishlist(<?= $value['proID'] ?>)" title="Wishlist">
                                        <i class="icon fa fa-heart"></i>
                                        </a>
                                     </li>
