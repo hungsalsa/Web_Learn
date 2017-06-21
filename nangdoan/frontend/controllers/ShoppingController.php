@@ -18,5 +18,11 @@ class ShoppingController extends \yii\web\Controller
 
     }
 
-    
+    public function actionAaa(){
+    	$session = Yii::$app->session;
+		$session->set('123', '1234');
+echo "<pre>";
+		var_dump($session);
+		die();
+    }
 }
