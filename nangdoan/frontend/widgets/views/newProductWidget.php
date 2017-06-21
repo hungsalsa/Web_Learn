@@ -21,18 +21,20 @@
                      <div class="product">
                         <div class="product-image">
                            <div class="image">
-                              <a href="<?= yii::$app->homeUrl.'product/detail?id='.$value['proID'] ?>"><img  src="<?= (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]/".$value['image'] ?>" alt=""></a>
+                              <a href="<?= yii::$app->homeUrl.'product/detail?id='.$value['proID'] ?>">
+                                 <img  src="<?= (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]/".$value['image'] ?>" alt="" id="img_<?= $value['proID'] ?>">
+                              </a>
                            </div>
                            <!-- /.image -->        
                            <div class="tag new"><span>new</span></div>
                         </div>
                         <!-- /.product-image -->
                         <div class="product-info text-left">
-                           <h3 class="name"><a href="<?= yii::$app->homeUrl.'product/detail?id='.$value['proID'] ?>"><?= $value['productName'] ?></a></h3>
+                           <h3 class="name"><a href="<?= yii::$app->homeUrl.'product/detail?id='.$value['proID'] ?>" id="txtPro_<?= $value['proID'] ?>"><?= $value['productName'] ?></a></h3>
                            <div class="rating rateit-small"></div>
                            <div class="description"></div>
                            <div class="product-price">   
-                              <span class="price">$ <?= $value['priceSale'] ?></span>
+                              <span class="price" id="txtPrice_<?= $value['proID'] ?>">$ <?= $value['priceSale'] ?></span>
                               <span class="price-before-discount">$ <?= $value['price'] ?></span>
                            </div>
                            <!-- /.product-price -->
@@ -42,13 +44,13 @@
                            <div class="action">
                               <ul class="list-unstyled">
                                  <li class="add-cart-button btn-group">
-                                    <button data-toggle="tooltip" class="btn btn-primary icon" type="button" title="Add Cart">
+                                    <button data-toggle="tooltip" class="btn btn-primary icon" type="button" title="Add Cart" onclick="addCard(<?= $value['proID'] ?>)">
                                     <i class="fa fa-shopping-cart"></i>                                     
                                     </button>
-                                    <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
+                                    <button class="btn btn-primary cart-btn" type="button" onclick="addCard(<?= $value['proID'] ?>)">Add to cart</button>
                                  </li>
                                  <li class="lnk wishlist">
-                                    <a data-toggle="tooltip" class="add-to-cart" href="detail.html" title="Wishlist">
+                                    <a data-toggle="tooltip" class="add-to-cart" href="javascript:void(0)" onclick="addWishlist(<?= $value['proID'] ?>)" title="Wishlist">
                                     <i class="icon fa fa-heart"></i>
                                     </a>
                                  </li>

@@ -122,14 +122,66 @@ AppAsset::register($this);
     <?= footerWidget::widget(); ?>
     <!-- ============================================================= FOOTER : END============================================================= -->
 
+    <!-- ============================================================= MODAL : START============================================================= -->
+
+    <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" id="shoppingcart">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Shoppng cart</h4>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <img src="" alt="" id="imgPreview" height="150px">
+                </div>
+                <div class="col-md-6">
+                    <p>Tên sản phẩm: <span id="txtNameProduct"></span></p>
+                    <p>Giá sản phẩm: <span id="txtPrice"></span></p>
+                </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <!-- ============================================================= MODAL : END============================================================= -->
 <?php $this->endBody() ?>
-<script>
+</body>
+<script type="text/javascript">
     function addWishlist(id) {
         $.get('<?= yii::$app->homeUrl."wishlist/add" ?>', {'id': id}, function(data) {
-            
+            alert('Success add Whishlist !')
+        });
+    }
+
+    function addCard(id,num){
+        cartNumber = $("#cartNumber").val();
+        if(cartNumber>0){
+            number = cartNumber;
+        }else{
+            number = 1;
+        }
+        img = $("#img_"+id).attr("src");
+        $("#imgPreview").attr({
+            "src": img
+        });
+        txtPro = $("#txtPro_"+id).text();
+        $("#txtNameProduct").text(txtPro);
+
+        txtPrice = $("#txtPrice_"+id).text();
+        $("#txtPrice").text(txtPrice);
+
+        $("#shoppingcart").modal();
+
+        $.get('<?= yii::$app->homeUrl."shopping/addcart" ?>/'+id+"/"+number, function(data) {
+            // alert('Success add addcart !')
         });
     }
 </script>
-</body>
 </html>
 <?php $this->endPage() ?>

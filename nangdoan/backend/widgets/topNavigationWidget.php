@@ -1,11 +1,10 @@
 <?php
-namespace frontend\widgets;
+namespace backend\widgets;
 
 use yii\base\Widget;
 use yii\helpers\Html;
-use app\models\Product;
 
-class scrollTabWidget extends Widget
+class topNavigationWidget extends Widget
 {
     public $message;
 
@@ -20,8 +19,6 @@ class scrollTabWidget extends Widget
 
     public function run()
     {
-        $product = new Product();
-        $newProduct = $product->getProductUpsell();
-        return $this->render('scrollTabWidget',['newProduct'=>$newProduct]);
+        return $this->render('topNavigationWidget');
     }
 }

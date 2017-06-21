@@ -4,7 +4,7 @@
 
 $this->title = 'My Yii Nang doan';
 use frontend\widgets\bannerWidget;
-use frontend\widgets\scrollTabWidget;
+use frontend\widgets\newProductWidget;
 use frontend\widgets\wideProductWidget;
 use frontend\widgets\featuredProductWidget;
 use frontend\widgets\newBannerWidget;
@@ -26,7 +26,7 @@ use frontend\widgets\newArriavlsWidget;
 
    <!-- ============================================== SCROLL TABS ============================================== -->
    
-   <?= scrollTabWidget::widget(); ?>
+   <?= newProductWidget::widget(); ?>
     
     <!-- /.scroll-tabs -->
      <!-- ============================================== SCROLL TABS : END ============================================== -->

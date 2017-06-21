@@ -2,7 +2,7 @@
 
 namespace frontend\controllers;
 use app\models\Product;
-		use frontend\models\Category;
+use frontend\models\Category;
 
 class ProductController extends \yii\web\Controller
 {

@@ -57,10 +57,12 @@ class CategorySearch extends Category
             return $dataProvider;
         }
 
+
         // grid filtering conditions
         $query->andFilterWhere([
             'idCate' => $this->idCate,
             'parent_id' => $this->parent_id,
+            // 'parent_id' => $parent,
             'order' => $this->order,
             'group_ID' => $this->group_ID,
             'status' => $this->status,

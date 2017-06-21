@@ -142,18 +142,20 @@
                         <div class="product">
                            <div class="product-image">
                               <div class="image">
-                                 <a href="<?= yii::$app->homeUrl.'product/detail?id='.$value['proID']; ?>"><img  src="<?= yii::$app->homeUrl.$value['image'] ?>" alt=""></a>
+                                 <a href="<?= yii::$app->homeUrl.'product/detail?id='.$value['proID']; ?>">
+                                    <img src="<?= yii::$app->homeUrl.$value['image']; ?>" alt="<?= $value['productName'] ?>" id="img_<?= $value['proID'] ?>">
+                                 </a>
                               </div>
                               <!-- /.image -->			
                               <div class="tag new"><span>new</span></div>
                            </div>
                            <!-- /.product-image -->
                            <div class="product-info text-left">
-                              <h3 class="name"><a href="<?= yii::$app->homeUrl.'product/detail?id='.$value['proID']; ?>"><?= $value['productName'] ?></a></h3>
+                              <h3 class="name"><a href="<?= yii::$app->homeUrl.'product/detail?id='.$value['proID']; ?>" id="txtPro_<?= $value['proID'] ?>"><?= $value['productName'] ?></a></h3>
                               <div class="rating rateit-small"></div>
                               <div class="description"></div>
                               <div class="product-price">	
-                                 <span class="price"><?= $value['price'] ?></span>
+                                 <span class="price" id="txtPrice_<?= $value['proID'] ?>">$ <?= number_format($value['price'],0,',','.') ?></span>
                                  <span class="price-before-discount">$ 800</span>
                               </div>
                               <!-- /.product-price -->
@@ -163,8 +165,8 @@
                               <div class="action">
                                  <ul class="list-unstyled">
                                     <li class="add-cart-button btn-group">
-                                       <button class="btn btn-primary icon" data-toggle="dropdown" type="button">
-                                       <i class="fa fa-shopping-cart"></i>													
+                                       <button class="btn btn-primary icon" data-toggle="dropdown" type="button" onclick="addCard(<?= $value['proID'] ?>)">
+                                          <i class="fa fa-shopping-cart"></i>
                                        </button>
                                        <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
                                     </li>

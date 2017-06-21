@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use backend\models\Category;
+// use frontend\models\Category;
 // use backend\models\Category;
 
 /* @var $this yii\web\View */
@@ -21,45 +22,43 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Thêm mới danh mục', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
+
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
-
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
             'idCate',
             'cateName',
-            'icon',
+            // 'icon',
             'parent_id',
-            // [
-            //     'label' => 'parent_id',
-
-            //     'value' => function ($model) {
-            //         return $model::Balance();
-            //     }
-                
-            // ],
+            [
+             'attribute'=>'parent_id',
+            // 'format'=>'html',
+             'value' => function ($data) {
+//               echo "<pre>";print_r($data->parent_id);
+// die();
+              if($data['parent_id']==0){
+                return $data['cateName'];
+              }else{
+                $catSub1 = new Category();
+                $dataCatSub1 = $catSub1->getCategoryParent($data['parent_id']);
+//                    echo "<pre>";print_r($dataCatSub1[$data['idCate']]);
+// die();
+                return  $dataCatSub1[$data['idCate']];
+              }
+// $data['parent_id'];  id danh muc cha
+              // $cat = new Category();
+              // $dataCat = $cat->getCategoryByParent();
+                     
+                 }
+             ],
             // 'keywords',
             // 'description:ntext',
             // 'order',
             // 'group_ID',
             // 'status',
-            [
-                'label' => 'status',
-
-                'value' => function ($data) {
-                    if ($data['status']==1) {
-                        return "Hiện";
-                    } else {
-                        return "Ẩn";
-                    }
-                    
-                    // echo "<pre>";print_r($data['status']);
-                    // die();
-                }
-                
-            ],
             // 'created_at',
             // 'updated_at',
 

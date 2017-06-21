@@ -3,21 +3,18 @@
 namespace backend\controllers;
 
 use Yii;
-use backend\models\Product;
-use backend\models\ProductSearch;
-use backend\models\Group;
 use backend\models\Category;
-use backend\models\Suppliers;
+use backend\models\CategorySearch;
+use backend\models\Group;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
-use yii\helpers\Url;
 
 /**
- * ProductController implements the CRUD actions for Product model.
+ * CategoryController implements the CRUD actions for Category model.
  */
-class ProductController extends Controller
+class Category2Controller extends Controller
 {
     /**
      * @inheritdoc
@@ -35,13 +32,14 @@ class ProductController extends Controller
     }
 
     /**
-     * Lists all Product models.
+     * Lists all Category models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new ProductSearch();
+        $searchModel = new CategorySearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
 
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -50,7 +48,7 @@ class ProductController extends Controller
     }
 
     /**
-     * Displays a single Product model.
+     * Displays a single Category model.
      * @param integer $id
      * @return mixed
      */
@@ -62,53 +60,38 @@ class ProductController extends Controller
     }
 
     /**
-     * Creates a new Product model.
+     * Creates a new Category model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Product();
+        $model = new Category();
 
         $group = new Group();
         $allGroup = ArrayHelper::map($group->getAllGroup(),'idGroups','groupsName');
 
-        $category = new Category();
-        $allCategory = $category->getCategoryParent();
-        if(empty($allCategory)) { $allCategory =array(); }
-
-        $suplier = new Suppliers();
-        $allSupliers = ArrayHelper::map($suplier->getAllSuppliers(),'suppID','companyName');
-
-        $urlImage = Yii::$app->request->post();
-
-        // $img_link = str_replace("http://local.web_learn.vn/nangdoan/", "", $urlImage['Product']['image']);
+        $dataCat = $model->getCategoryParent();
+        if(empty($dataCat)) { $dataCat =array(); }
         
-
         $time = time();
         $model->created_at = $time;
         $model->updated_at = $time;
+        
 
-
-        $model->userID = Yii::$app->user->id;
-
-
-        if ($model->load(Yii::$app->request->post())) {
-            $model->image = str_replace("http://local.nangdoan.vn/", "", $urlImage['Product']['image']);
-            if($model->save())
-                return $this->redirect(['view', 'id' => $model->proID]);
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['index']);
         } else {
             return $this->render('create', [
                 'model' => $model,
                 'allGroup' => $allGroup,
-                'allCategory' => $allCategory,
-                'allSupliers' => $allSupliers,
+                'dataCat' => $dataCat,
             ]);
         }
     }
 
     /**
-     * Updates an existing Product model.
+     * Updates an existing Category model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -120,33 +103,28 @@ class ProductController extends Controller
         $group = new Group();
         $allGroup = ArrayHelper::map($group->getAllGroup(),'idGroups','groupsName');
 
-        $category = new Category();
-        $allCategory = $category->getCategoryParent();
-        if(empty($allCategory)) { $allCategory =array(); }
-
-        $suplier = new Suppliers();
-        $allSupliers = ArrayHelper::map($suplier->getAllSuppliers(),'suppID','companyName');
-
-        $time = time();
+        $dataCat = $model->getCategoryParent();
+        if(empty($dataCat)) { $dataCat =array(); }else{
+            // array_unshift($dataCat, '-- Chon danh muc cha --');
+        }
         
+        $time = time();
+        $model->created_at = $time;
         $model->updated_at = $time;
-         $urlImage = Yii::$app->request->post();
-        if ($model->load(Yii::$app->request->post())) {
-            $model->image = str_replace("http://local.nangdoan.vn/", "", $urlImage['Product']['image']);
-            if($model->save())
-                return $this->redirect(['view', 'id' => $model->proID]);
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->idCate]);
         } else {
             return $this->render('update', [
                 'model' => $model,
                 'allGroup' => $allGroup,
-                'allCategory' => $allCategory,
-                'allSupliers' => $allSupliers,
+                'dataCat' => $dataCat,
             ]);
         }
     }
 
     /**
-     * Deletes an existing Product model.
+     * Deletes an existing Category model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -159,33 +137,31 @@ class ProductController extends Controller
     }
 
     /**
-     * Finds the Product model based on its primary key value.
+     * Finds the Category model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Product the loaded model
+     * @return Category the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Product::findOne($id)) !== null) {
+        if (($model = Category::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
 
-    public function actionList_category($id)
-    {
-        //count
-        $countcategory = Category::find()->where(['group_ID'=>$id])->count();
 
-        $category = Category::find()->where(['group_ID'=>$id])->orderBy('idCate DESC')->all();
-        if($countcategory > 0 ){
-            foreach ($category as $result) {
-                echo "<option value='".$result->idCate."'>".$result->cateName."</option>";
-            }
-        }else{
-            echo "<option>-Hãy tạo danh mục trước-</option>";
-        }
-    }
+
+
+
+    // ===================================>
+
+    // public function getListChildrenCategory($page = 1, $limit = 1, $parent_id = 0){
+    //     $searchModel = new CategorySearch();
+    //     $searchModel->parent_id = $parent_id;
+    //     $dataProvider = $searchModel->search(Yii::$app->request->getQueryParams());
+    //     return $dataProvider->getModels();
+    // }
 }

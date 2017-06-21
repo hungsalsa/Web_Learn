@@ -207,12 +207,15 @@
                                           <div class="arrow plus gradient"><span class="ir"><i class="icon fa fa-sort-asc"></i></span></div>
                                           <div class="arrow minus gradient"><span class="ir"><i class="icon fa fa-sort-desc"></i></span></div>
                                        </div>
-                                       <input type="text" value="1">
+                                       <input type="text" value="1" id="cartNumber">
                                     </div>
                                  </div>
                               </div>
                               <div class="col-sm-7">
-                                 <a href="#" class="btn btn-primary"><i class="fa fa-shopping-cart inner-right-vs"></i> ADD TO CART</a>
+                                 <a href="#" class="btn btn-primary" onclick="addCard(<?= $data['proID'] ?>)">
+                                    <i class="fa fa-shopping-cart inner-right-vs"></i> 
+                                    ADD TO CART
+                                 </a>
                               </div>
                            </div>
                            <!-- /.row -->
